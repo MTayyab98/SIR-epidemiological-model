@@ -16,14 +16,13 @@ SIR <- function(time, country, parameters) {
 }
 library(deSolve)
 library(lubridate)
-sir_start_date <- "2020-01-30"
+sir_start_date <- "2020-01-30"   #Start and end dates as per your data
 sir_end_date <- "2020-06-29"                              
 
 Infected <- India$I
 Day <- 1:(length(Infected))
 
 # now specify initial values for S, I and R
-
 init <- c(
   S = N - Infected[1],
   I = Infected[1],
@@ -41,8 +40,6 @@ RSS <- function(parameters) {
 # smallest RSS, which represents the best fit to the data.
 # Start with values of 0.5 for each, and constrain them to
 # the interval 0 to 1.0
-
-
 Opt <- optim(c(0.1, 0.1),
              RSS,
              method = "L-BFGS-B",
@@ -84,6 +81,7 @@ fitted_cumulative_incidence %>%
   theme_minimal()
 
 R0 <- as.numeric(Opt_par[1] / Opt_par[2])
+
 # plot in log scale
 fitted_cumulative_incidence %>%
   ggplot(aes(x = Date)) +
@@ -99,7 +97,7 @@ fitted_cumulative_incidence %>%
 
 
 # time in days for predictions
-t <- 1:270
+t <- 1:270     
 
 # get the fitted values from our SIR model
 fitted_cumulative_incidence <- data.frame(ode(
