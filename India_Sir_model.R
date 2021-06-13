@@ -2,7 +2,6 @@
 # cumulative incidence and total population. It calculates beta and gamma using ODE.
 # it also calculate reproduction rate R0 that means how many people get affected from one person.
 # the code also gives peak date and maximum people that will get infected. 
-#setwd("C:\\Users\\Talal Mohd\\Desktop\\tayyab\\TERI\\Internship(Minor Project)\\SIR\\India")
 India <- read.table('India_nation_level_daily.csv', header=TRUE, sep=',')
 India$Date <- as.Date(India$Date,format = "%m/%d/%y")
 N <- 1387297452 # total population
